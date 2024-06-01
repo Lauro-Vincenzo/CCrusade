@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://be16ccsq4ddch"]
+
+[ext_resource type="Script" path="res://source/scripts/Player.gd" id="1_1p7mm"]
+[ext_resource type="Texture2D" uid="uid://bolef7aqfmnqu" path="res://Assets/Lorenzo_100x100.png" id="2_y0hji"]
+[ext_resource type="AudioStream" uid="uid://s2wl50x2tiy5" path="res://Assets/Flash.ogg" id="3_7ikca"]
+
+[node name="Player" type="Area2D"]
+position = Vector2(500, 300)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_1p7mm")
+blink_multiplier = 700
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
+texture = ExtResource("2_y0hji")
+
+[node name="BlinkCooldownTimer" type="Timer" parent="."]
+
+[node name="BlinkSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7ikca")
+
+[connection signal="timeout" from="BlinkCooldownTimer" to="." method="_on_blink_cooldown_timer_timeout"]
